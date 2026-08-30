@@ -1,0 +1,19 @@
+{
+  "name": "scroll-today",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "热搜求生 scroll.today —— 唯一操作是滚动的生存小游戏",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "html-to-image": "^1.11.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.8"
+  }
+}

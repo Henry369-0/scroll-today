@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="description" content="热搜求生 scroll.today —— 唯一操作是滚动的生存小游戏。刷得越快，热搜扑得越猛。" />
+  <title>热搜求生 · scroll.today</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F2EAD9'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23B5482A' font-family='serif' font-weight='bold'%3E热%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="hud-depth"><span id="hud-depth">0</span><i>m</i></div>
+      <div class="hud-score">积分 <span id="hud-score">0</span></div>
+      <div class="hud-boost"><div id="hud-boost-bar"></div></div>
+    </div>
+    <div class="hud-right">
+      <div id="hud-lives" class="hud-lives" aria-label="生命"></div>
+      <div id="hud-mode" class="hud-mode hidden">每日挑战</div>
+    </div>
+  </div>
+
+  <!-- 主菜单 -->
+  <div id="menu" class="overlay">
+    <div class="menu-card">
+      <div class="menu-seal">号外</div>
+      <h1 class="menu-title">热搜求生</h1>
+      <p class="menu-sub">scroll.today —— 刷得越快，热搜扑得越猛</p>
+      <div class="menu-howto">
+        <span>滚轮 ↓ 刷得快</span><span>滚轮 ↑ 刹车</span><span>鼠标 X 左右躲</span>
+      </div>
+      <div class="menu-buttons">
+        <button id="btn-start" class="btn btn-primary">开 刷</button>
+        <button id="btn-daily" class="btn">每日挑战</button>
+      </div>
+      <div class="menu-settings">
+        <label><input type="checkbox" id="opt-sound" checked> 音效</label>
+        <label><input type="checkbox" id="opt-juice" checked> 游戏感（juice）</label>
+        <label><input type="checkbox" id="opt-hotlist"> 实验性：真实热榜</label>
+      </div>
+      <div class="menu-board">
+        <div class="board-title">本地 Top 10</div>
+        <ol id="board-menu" class="board-list"></ol>
+      </div>
+      <p class="menu-note">词库 100% 自造 · 撞上热搜扣一命 · 吃到冷静药水回一命</p>
+      <p class="menu-credit">灵感来源：Ironic Sans《Doomscrolling: The Game》 · 系列第四件 layers / focus / digest / scroll.today</p>
+    </div>
+  </div>
+
+  <!-- 暂停 -->
+  <div id="pause" class="overlay hidden">
+    <div class="pause-card">
+      <h2>已暂停</h2>
+      <p>按 <b>Esc</b> 或 <b>P</b> 继续</p>
+      <button id="btn-resume" class="btn">继续刷</button>
+    </div>
+  </div>
+
+  <!-- 结算 -->
+  <div id="gameover" class="overlay hidden">
+    <div class="over-wrap">
+      <div id="card-preview" class="card-preview"></div>
+      <div class="over-side">
+        <div id="over-rank" class="over-rank hidden"></div>
+        <div class="over-buttons">
+          <button id="btn-save-card" class="btn btn-primary">保存「号外」成绩卡</button>
+          <button id="btn-retry" class="btn">再来一局</button>
+          <button id="btn-home" class="btn">回到首页</button>
+        </div>
+        <div class="menu-board">
+          <div class="board-title">本地 Top 10</div>
+          <ol id="board-over" class="board-list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成绩卡导出舞台（保持在布局外） -->
+  <div id="card-stage" aria-hidden="true"></div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
