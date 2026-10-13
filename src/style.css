@@ -50,6 +50,13 @@ html, body {
 }
 #hud-boost-bar { height: 100%; width: 0%; background: var(--brick); transition: width 0.08s linear; }
 .hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.btn.hud-pause {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 14px;
+  touch-action: manipulation;
+}
 .hud-lives { display: flex; gap: 8px; }
 .hud-mode {
   font-size: 12px; padding: 3px 10px;

@@ -169,6 +169,7 @@ document.getElementById('btn-retry')!.addEventListener('click', () => {
 });
 document.getElementById('btn-home')!.addEventListener('click', goHome);
 document.getElementById('btn-resume')!.addEventListener('click', () => togglePause(false));
+document.getElementById('btn-pause')!.addEventListener('click', () => togglePause(true));
 
 btnSaveCard.addEventListener('click', () => {
   const card = (window as unknown as { __card?: HTMLElement }).__card;
@@ -187,15 +188,22 @@ btnSaveCard.addEventListener('click', () => {
 function togglePause(on?: boolean): void {
   if (scene !== 'play') return;
   const next = on ?? !loop.paused;
+  if (next === loop.paused) return;
   loop.paused = next;
+  if (next) input.reset();
   pauseEl.classList.toggle('hidden', !next);
   sfx.ui();
 }
 
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Escape' || e.code === 'KeyP') {
+    if (e.repeat) return;
     if (scene === 'play') togglePause();
   }
+});
+window.addEventListener('blur', () => togglePause(true));
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) togglePause(true);
 });
 
 // 设置项
